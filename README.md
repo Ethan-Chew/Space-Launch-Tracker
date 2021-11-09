@@ -14,6 +14,7 @@ Data included in the Website includes, but not limited to,
 6. Webcast/Is Webcast Live
 7. On Hold Reasons (If Needed)
 8. Failed Reasons (If Needed)
+9. **Create Calendar Events for Specific Launches (Using .ics Files)**
 
 ## Credits
 Made Possible by the [Launch Library 2 API](https://thespacedevs.com/llapi). Hosted with [Vercel](https://vercel.com).
