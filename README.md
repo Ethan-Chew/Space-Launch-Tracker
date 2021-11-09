@@ -15,10 +15,8 @@ Data included in the Website includes, but not limited to,
 7. On Hold Reasons (If Needed)
 8. Failed Reasons (If Needed)
 
-<br />
-
 ## Credits
-Made Possible by the [Launch Library 2 API](https://thespacedevs.com/llapi). Hosted with [Vercel](https://vercel.com)
+Made Possible by the [Launch Library 2 API](https://thespacedevs.com/llapi). Hosted with [Vercel](https://vercel.com).
 
 <br />
 
