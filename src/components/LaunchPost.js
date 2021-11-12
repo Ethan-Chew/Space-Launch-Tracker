@@ -27,16 +27,19 @@ const LaunchPost = ({postData, allData}) => {
         return Object.keys(allData).find(key => allData[key] === value);
     }
 
-    const date = postData.net.split("-") // Ignore date[3]
-    const time = data[3].replace("T", "").replace("Z", "")
-    const displayDate = `${date[1]}/${date[2]}/${date[0]} ${time} UTC`
-    
-    let newDate = newDate(displayDate)
+    // Date Formatting
+    const date = postData.net.split("-") // Ignore date[2]
+    const dayTime = date[2].split("T") // Ignore dayTime[1]
+    const time = dayTime[1].replace("Z", "")
+    let newDate = new Date(postData.net)
     newDate.toString()
+    newDate = String(newDate)
     const localTimeDate = newDate.split(" ")[4].split(":")
+    let newNewDate = newDate.split(" ")
+    newNewDate = `${newNewDate[0]}, ${newNewDate[2]} ${newNewDate[1]} ${newNewDate[3]} -- ${newNewDate[4]}`
 
     const event = {
-        start : [date[0], date[1], date[2]],
+        start : [date[0], date[1], dayTime[0], time.split(":")[0], time.split(":")[1]], // year, month, day, hour, minute, second
         duration: { hours: localTimeDate[0], minutes: localTimeDate[1] },
         title: postData.name,
         description: (postData.mission === null) ? postData.status.description : postData.mission.description,
@@ -51,11 +54,11 @@ const LaunchPost = ({postData, allData}) => {
         <LinkBox as="article" maxW="md" minW="xs" border={colorMode === "light" ? "1px #EDF2F7 solid" : "1px grey solid"} boxShadow={colorMode === "light" ? "lg" : ""} borderRadius="lg" overflow="hidden">
             {/* <Link href={`/launch/${slugID}`}> */}
                 <Box>
-                    <Image src={postData.image} maxHeight="55%" width="100%" objectFit="cover" mb={3}/>
+                    <Image src={postData.image} height="180px" width="100%" objectFit="cover" mb={3}/>
                     <VStack alignItems="center" mb={3}>
                         <Text fontSize="2xl" textAlign="center"><b>{postData.name}</b></Text>
                         <Text><b>Launch Status:</b> {postData.status.name}</Text>
-                        <Text><b>T-0: </b> {newDate}</Text>
+                        <Text><b>T-0: </b> {newNewDate}</Text>
                         {postData.mission === null ? <Text><b>Mission: </b> Unknown</Text> : <Text><b>Mission:</b> {postData.mission.type}</Text>}
                     </VStack>
                     <Accordion allowToggle>

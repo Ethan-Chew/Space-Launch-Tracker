@@ -51,7 +51,7 @@ export default function Home() {
             </FormControl>
           </HStack>
           {(Object.values(data).length === 0) ? <Text>No current launches! Check back soon.</Text> : 
-              <SimpleGrid columns={{ base: 1, md: 2}} spacing={{ base: 5, lg: 8}}>
+              <SimpleGrid columns={{ base: 1, md: 2, lg: 3}} spacing={{ base: 5, lg: 8}}>
                 {Object.values(data).map((prop) => (
                   <LaunchPost key={prop.id} postData={prop} allData={data} />
                 ))}
