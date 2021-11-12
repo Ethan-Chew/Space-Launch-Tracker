@@ -34,7 +34,7 @@ export default function Home() {
       console.error(err)
       console.log(`Data Retrival for ${dataType} Failed!`)
     }
-  })
+  }, [])
 
   return (
       <Box>

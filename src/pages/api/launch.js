@@ -8,7 +8,7 @@ export const getData = (dataToGet) => {
 }
 
 async function getLaunch24Hrs() {
-  const API_ENDPOINT = "https://lldev.thespacedevs.com/2.2.0/launch/upcoming"
+  const API_ENDPOINT = "https://ll.thespacedevs.com/2.2.0/launch/upcoming"
 
   try {
     const response = await fetch(API_ENDPOINT, {
@@ -23,7 +23,7 @@ async function getLaunch24Hrs() {
 }
 
 async function getAllLaunch() {
-  const API_ENDPOINT = "https://lldev.thespacedevs.com/2.2.0/launch"
+  const API_ENDPOINT = "https://ll.thespacedevs.com/2.2.0/launch/"
 
   try {
     const response = await fetch(API_ENDPOINT, {

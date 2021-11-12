@@ -80,10 +80,10 @@ const LaunchPost = ({postData, allData}) => {
                             </AccordionPanel>
                         </AccordionItem>
                     </Accordion>
-                    <HStack>
+                    {/* <HStack>
                         {(postData.holdreason === "") ? <></> : <Badge colorScheme="orange">On Hold</Badge>}
                         {(postData.failreason === "") ? <></> : <Badge colorScheme="red">Failed</Badge>}
-                    </HStack>
+                    </HStack> */}
                 </Box>
             {/* </Link> */}
         </LinkBox>
