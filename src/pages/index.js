@@ -19,9 +19,6 @@ export default function Home() {
 
   useEffect(() => {
     document.title = "Ethan Chew | Launch Tracker"
-
-    // Debug
-
   }, [])
 
   useEffect(async () => {
@@ -53,13 +50,13 @@ export default function Home() {
               </FormLabel>
             </FormControl>
           </HStack>
-          <SimpleGrid columns={{ base: 1, md: 2}} spacing={{ base: 5, lg: 8}}>
-            {(Object.values(data).length === 0) ? <Text>No current launches! Check back soon.</Text> : 
-              Object.values(data).map((prop) => {
-                <LaunchPost key={prop.id} postProperty={prop} />
-              })
+          {(Object.values(data).length === 0) ? <Text>No current launches! Check back soon.</Text> : 
+              <SimpleGrid columns={{ base: 1, md: 2}} spacing={{ base: 5, lg: 8}}>
+                {Object.values(data).map((prop) => (
+                  <LaunchPost key={prop.id} postData={prop} allData={data} />
+                ))}
+              </SimpleGrid>
             }
-          </SimpleGrid>
         </VStack>
 
       </Box>
