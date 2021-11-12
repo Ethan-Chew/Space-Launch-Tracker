@@ -4,6 +4,7 @@ import {
     VStack,
     HStack,
     Heading,
+    Button,
     Badge,
     Text,
     LinkBox,
@@ -15,18 +16,36 @@ import {
     AccordionIcon,
 } from "@chakra-ui/react"
 import Link from 'next/link'
+const ics = require('ics')
 
 
 const LaunchPost = ({postData, allData}) => {
     const { colorMode } = useColorMode()
     const slugID = String(getKey(postData))
+
     function getKey(value) {
         return Object.keys(allData).find(key => allData[key] === value);
     }
-    console.log(postData)
-    const badgeColor = {
-        
+
+    const date = postData.net.split("-") // Ignore date[3]
+    const time = data[3].replace("T", "").replace("Z", "")
+    const displayDate = `${date[1]}/${date[2]}/${date[0]} ${time} UTC`
+    
+    let newDate = newDate(displayDate)
+    newDate.toString()
+    const localTimeDate = newDate.split(" ")[4].split(":")
+
+    const event = {
+        start : [date[0], date[1], date[2]],
+        duration: { hours: localTimeDate[0], minutes: localTimeDate[1] },
+        title: postData.name,
+        description: (postData.mission === null) ? postData.status.description : postData.mission.description,
+        location: postData.pad.name,
+        url: postData.url,
+        // geo: { lat: 40.0095, lon: 105.2669 },
+        categories: ['Space Launch'],
     }
+
 
     return (
         <LinkBox as="article" maxW="md" minW="xs" border={colorMode === "light" ? "1px #EDF2F7 solid" : "1px grey solid"} boxShadow={colorMode === "light" ? "lg" : ""} borderRadius="lg" overflow="hidden">
@@ -34,8 +53,9 @@ const LaunchPost = ({postData, allData}) => {
                 <Box>
                     <Image src={postData.image} maxHeight="55%" width="100%" objectFit="cover" mb={3}/>
                     <VStack alignItems="center" mb={3}>
-                        <Text fontSize="2xl"><b>{postData.name}</b></Text>
+                        <Text fontSize="2xl" textAlign="center"><b>{postData.name}</b></Text>
                         <Text><b>Launch Status:</b> {postData.status.name}</Text>
+                        <Text><b>T-0: </b> {newDate}</Text>
                         {postData.mission === null ? <Text><b>Mission: </b> Unknown</Text> : <Text><b>Mission:</b> {postData.mission.type}</Text>}
                     </VStack>
                     <Accordion allowToggle>
@@ -51,12 +71,15 @@ const LaunchPost = ({postData, allData}) => {
                             <AccordionPanel pb={4}>
                                 <Text><b>Launch Pad: </b> {postData.pad.name}</Text>
                                 <Text><b>Provider: </b> {postData.launch_service_provider.name}</Text>
-                                <Text><b>Orbit: </b> {postData.mission.orbit.name}</Text>
+                                {(postData.mission === null ? <Text><b>Orbit: </b> Unknown</Text> : <Text><b>Orbit: </b> {postData.mission.orbit.name}</Text>)}
+                                {(postData.mission === null) ? <Text><b>Description: </b> {postData.status.description}</Text> : <Text><b>Description: </b> {postData.mission.description}</Text>}
+                                <Button></Button>
                             </AccordionPanel>
                         </AccordionItem>
                     </Accordion>
                     <HStack>
-                        <Badge></Badge>
+                        {(postData.holdreason === "") ? <></> : <Badge colorScheme="orange">On Hold</Badge>}
+                        {(postData.failreason === "") ? <></> : <Badge colorScheme="red">Failed</Badge>}
                     </HStack>
                 </Box>
             {/* </Link> */}
