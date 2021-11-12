@@ -21,6 +21,6 @@ export default function LaunchPost({postProperty}) {
 
         //     </Link>
         // </LinkBox>
-        <Text>{postProperty.name}</Text>
+        <Text>{postProperty.id}</Text>
     )
 }

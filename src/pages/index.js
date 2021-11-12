@@ -15,25 +15,29 @@ import LaunchPost from '../components/LaunchPost'
 
 export default function Home() {
   const [dataType, setDataType] = useState("24 Hour Data")
-  const [launches, setLaunches] = useState([])
   const [data, setData] = useState([])
 
   useEffect(() => {
     document.title = "Ethan Chew | Launch Tracker"
-    
+
+    // Debug
+
+  }, [])
+
+  useEffect(async () => {
     try {
-      async function fetchData() {
-        const temp = await getData(dataType)
-        await setData(temp)
+      const temp = await getData(dataType)
+      setData(temp.results)
+
+      if (data === {} || data === undefined || data === null) {
+        console.error("Data is Empty or Undefined!")
       }
-      fetchData()
+
     } catch (err) {
       console.error(err)
       console.log(`Data Retrival for ${dataType} Failed!`)
     }
-    
-    setLaunches(data.results)
-  }, [])
+  })
 
   return (
       <Box>
@@ -50,8 +54,8 @@ export default function Home() {
             </FormControl>
           </HStack>
           <SimpleGrid columns={{ base: 1, md: 2}} spacing={{ base: 5, lg: 8}}>
-            {(launches.length === 0) ? <Text>No current launches! Check back soon.</Text> : 
-              launches.map((prop) => {
+            {(Object.values(data).length === 0) ? <Text>No current launches! Check back soon.</Text> : 
+              Object.values(data).map((prop) => {
                 <LaunchPost key={prop.id} postProperty={prop} />
               })
             }

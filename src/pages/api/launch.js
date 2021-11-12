@@ -1,5 +1,4 @@
 export const getData = (dataToGet) => {
-  console.log("Awaiting Data....")
 
   if (dataToGet == "24 Hour Data") {
     return getLaunch24Hrs()
