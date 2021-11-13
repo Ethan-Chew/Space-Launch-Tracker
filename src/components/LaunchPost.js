@@ -75,7 +75,7 @@ const LaunchPost = ({postData, allData}) => {
                             <AccordionPanel pb={4}>
                                 <Text><b>Launch Pad: </b> {postData.pad.name}</Text>
                                 <Text><b>Provider: </b> {postData.launch_service_provider.name}</Text>
-                                {(postData.mission === null ? <Text><b>Orbit: </b> Unknown</Text> : <Text><b>Orbit: </b> {postData.mission.orbit.name}</Text>)}
+                                {(postData.mission === null || postData.mission.orbit === null) ? <Text><b>Orbit: </b> Unknown</Text> : <Text><b>Orbit: </b> {postData.mission.orbit.name}</Text>}
                                 {(postData.mission === null) ? <Text><b>Description: </b> {postData.status.description}</Text> : <Text><b>Description: </b> {postData.mission.description}</Text>}
                                 <Button></Button>
                             </AccordionPanel>

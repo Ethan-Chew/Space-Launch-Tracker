@@ -14,7 +14,7 @@ import { getData } from "./api/launch"
 import LaunchPost from '../components/LaunchPost'
 
 export default function Home() {
-  const [dataType, setDataType] = useState("24 Hour Data")
+  const [dataType, setDataType] = useState("Upcoming Data")
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function Home() {
               <FormLabel>
                 <Select variant="filled" onChange={(e) => {
                   reloadData()
-                  const val = ["Lifetime Data", "24 Hour Data"]
+                  const val = ["Lifetime Data", "Upcoming Data"]
                   if (e.currentTarget.value === "") {
                     setDataType("0")
                   } else {
@@ -69,13 +69,13 @@ export default function Home() {
                   }
                   console.log(`Updated Data to ${val[Number(e.currentTarget.value)]}. Current Target: ${e.currentTarget.value}`)
                 }}>
-                  <option value="0">24 Hour Data</option>
+                  <option value="0">Upcoming Data</option>
                   <option value="1">Lifetime Data</option>
                 </Select>
               </FormLabel>
             </FormControl>
           </HStack>
-          {(Object.values(data).length === 0) ? <Text>No current launches! Check back soon.</Text> : 
+          {(Object.values(data).length === 0) ? <Text>Launch Data is Loading. Please hold on...</Text> : 
               <SimpleGrid columns={{ base: 1, md: 2, lg: 3}} spacing={{ base: 5, lg: 8}}>
                 {Object.values(data).map((prop) => (
                   <LaunchPost key={prop.id} postData={prop} allData={data} />

@@ -2,18 +2,18 @@ const debug = false // CHECK BEFORE PUSHING TO PROD
 
 export const getData = (dataToGet) => {
 
-  if (dataToGet == "24 Hour Data") {
-    return getLaunch24Hrs()
+  if (dataToGet == "Upcoming Data") {
+    return getLaunchUpcoming()
   } else {
     return getAllLaunch()
   }
 }
 
-async function getLaunch24Hrs() {
-  let API_ENDPOINT = "https://ll.thespacedevs.com/2.2.0/launch/upcoming"
+async function getLaunchUpcoming() {
+  let API_ENDPOINT = "https://ll.thespacedevs.com/2.2.0/launch/upcoming?limit=35"
 
   if (debug) {
-    API_ENDPOINT = "https://lldev.thespacedevs.com/2.2.0/launch/upcoming"
+    API_ENDPOINT = "https://lldev.thespacedevs.com/2.2.0/launch/upcoming?limit=35"
   }
 
   try {
@@ -29,10 +29,10 @@ async function getLaunch24Hrs() {
 }
 
 async function getAllLaunch() {
-  let API_ENDPOINT = "https://ll.thespacedevs.com/2.2.0/launch/"
+  let API_ENDPOINT = "https://ll.thespacedevs.com/2.2.0/launch?limit=135"
 
   if (debug) {
-    API_ENDPOINT = "https://lldev.thespacedevs.com/2.2.0/launch/"
+    API_ENDPOINT = "https://lldev.thespacedevs.com/2.2.0/launch?limit=135"
   }
 
   try {
