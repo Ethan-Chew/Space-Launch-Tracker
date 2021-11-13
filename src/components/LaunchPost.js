@@ -61,7 +61,7 @@ const LaunchPost = ({postData, allData}) => {
             saveAs(file)
         })
     }
-    console.log(postData)
+    
     return (
         <LinkBox as="article" maxW="md" minW="xs" border={colorMode === "light" ? "1px #EDF2F7 solid" : "1px grey solid"} boxShadow={colorMode === "light" ? "lg" : ""} borderRadius="lg" overflow="hidden">
             {/* <Link href={`/launch/${slugID}`}> */}
