@@ -10,10 +10,11 @@ Data included in the Website includes, but not limited to,
 2. Launch Service Provider (eg SpaceX, Blue Origin)
 3. Mission
 4. Pad (eg Launch Pad 39b)
-5. Webcast/Is Webcast Live _(Coming Soon)_
-6. On Hold Reasons (If Needed)
-7. Failed Reasons (If Needed)
-8. **Create Calendar Events for Specific Launches (Using .ics Files)** _(Coming Soon)_
+5. Webcast/Is Webcast Live
+6. Webcast Link _(Coming Soon)_
+7. On Hold Reasons (If Needed)
+8. Failed Reasons (If Needed)
+9. **Create Calendar Events for Specific Launches (Using .ics Files)**
 
 ## Limitations
 **Upcoming Launch Data** only shows the next _35 Rocket Launches_, and **Lifetime Launch Data** only shows _135 Rocket Launches_ (Since Start of Time)
