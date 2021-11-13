@@ -1,4 +1,4 @@
-const debug = false // CHECK BEFORE PUSHING TO PROD
+const debug = true // CHECK BEFORE PUSHING TO PROD
 
 export const getData = (dataToGet) => {
 
