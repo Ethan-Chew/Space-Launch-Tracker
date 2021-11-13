@@ -38,6 +38,7 @@ const LaunchPost = ({postData, allData}) => {
     let newNewDate = newDate.split(" ")
     newNewDate = `${newNewDate[0]}, ${newNewDate[2]} ${newNewDate[1]} ${newNewDate[3]} -- ${newNewDate[4]}`
 
+    // Create ics event
     const event = {
         start : [date[0], date[1], dayTime[0], time.split(":")[0], time.split(":")[1]], // year, month, day, hour, minute, second
         duration: { hours: localTimeDate[0], minutes: localTimeDate[1] },

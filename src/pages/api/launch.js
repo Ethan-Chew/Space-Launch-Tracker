@@ -1,3 +1,5 @@
+const debug = false // CHECK BEFORE PUSHING TO PROD
+
 export const getData = (dataToGet) => {
 
   if (dataToGet == "24 Hour Data") {
@@ -8,7 +10,11 @@ export const getData = (dataToGet) => {
 }
 
 async function getLaunch24Hrs() {
-  const API_ENDPOINT = "https://ll.thespacedevs.com/2.2.0/launch/upcoming"
+  let API_ENDPOINT = "https://ll.thespacedevs.com/2.2.0/launch/upcoming"
+
+  if (debug) {
+    API_ENDPOINT = "https://lldev.thespacedevs.com/2.2.0/launch/upcoming"
+  }
 
   try {
     const response = await fetch(API_ENDPOINT, {
@@ -23,7 +29,11 @@ async function getLaunch24Hrs() {
 }
 
 async function getAllLaunch() {
-  const API_ENDPOINT = "https://ll.thespacedevs.com/2.2.0/launch/"
+  let API_ENDPOINT = "https://ll.thespacedevs.com/2.2.0/launch/"
+
+  if (debug) {
+    API_ENDPOINT = "https://lldev.thespacedevs.com/2.2.0/launch/"
+  }
 
   try {
     const response = await fetch(API_ENDPOINT, {

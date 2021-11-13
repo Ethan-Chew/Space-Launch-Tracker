@@ -36,6 +36,21 @@ export default function Home() {
     }
   }, [])
 
+  async function reloadData() {
+    try {
+      const temp = await getData(dataType)
+      setData(temp.results)
+
+      if (data === {} || data === undefined || data === null) {
+        console.error("Data is Empty or Undefined!")
+      }
+
+    } catch (err) {
+      console.error(err)
+      console.log(`Data Retrival for ${dataType} Failed!`)
+    }
+  }
+
   return (
       <Box>
         <VStack spacing={30} mb={20}>
@@ -44,8 +59,18 @@ export default function Home() {
             <Text ><b>Launch Data</b></Text>
             <FormControl>
               <FormLabel>
-                <Select placeholder="24 Hour Data" onChange={(e) => setDataType(e.currentTarget.value)}>
-                  <option>Lifetime Data</option>
+                <Select variant="filled" onChange={(e) => {
+                  reloadData()
+                  const val = ["Lifetime Data", "24 Hour Data"]
+                  if (e.currentTarget.value === "") {
+                    setDataType("0")
+                  } else {
+                    setDataType(val[Number(e.currentTarget.value)])
+                  }
+                  console.log(`Updated Data to ${val[Number(e.currentTarget.value)]}. Current Target: ${e.currentTarget.value}`)
+                }}>
+                  <option value="0">24 Hour Data</option>
+                  <option value="1">Lifetime Data</option>
                 </Select>
               </FormLabel>
             </FormControl>
@@ -58,7 +83,6 @@ export default function Home() {
               </SimpleGrid>
             }
         </VStack>
-
       </Box>
   )
 }
