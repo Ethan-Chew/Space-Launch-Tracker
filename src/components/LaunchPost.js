@@ -30,7 +30,6 @@ const LaunchPost = ({postData, allData}) => {
     // Date Formatting
     const date = postData.net.split("-") // Ignore date[2]
     const dayTime = date[2].split("T") // Ignore dayTime[1]
-    const time = dayTime[1].replace("Z", "")
     let newDate = new Date(postData.net)
     newDate.toString()
     newDate = String(newDate)

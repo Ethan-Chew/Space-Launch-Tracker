@@ -34,22 +34,7 @@ export default function Home() {
       console.error(err)
       console.log(`Data Retrival for ${dataType} Failed!`)
     }
-  }, [])
-
-  async function reloadData() {
-    try {
-      const temp = await getData(dataType)
-      setData(temp.results)
-
-      if (data === {} || data === undefined || data === null) {
-        console.error("Data is Empty or Undefined!")
-      }
-
-    } catch (err) {
-      console.error(err)
-      console.log(`Data Retrival for ${dataType} Failed!`)
-    }
-  }
+  }, dataType)
 
   return (
       <Box>
@@ -60,17 +45,10 @@ export default function Home() {
             <FormControl>
               <FormLabel>
                 <Select variant="filled" onChange={(e) => {
-                  reloadData()
-                  const val = ["Lifetime Data", "Upcoming Data"]
-                  if (e.currentTarget.value === "") {
-                    setDataType("0")
-                  } else {
-                    setDataType(val[Number(e.currentTarget.value)])
-                  }
-                  console.log(`Updated Data to ${val[Number(e.currentTarget.value)]}. Current Target: ${e.currentTarget.value}`)
+                  setDataType(e.currentTarget.value)
                 }}>
-                  <option value="0">Upcoming Data</option>
-                  <option value="1">Lifetime Data</option>
+                  <option value="Upcoming Data">Upcoming Data</option>
+                  <option value="Lifetime Data">Lifetime Data</option>
                 </Select>
               </FormLabel>
             </FormControl>
