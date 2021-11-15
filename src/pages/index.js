@@ -39,7 +39,7 @@ export default function Home() {
   return (
       <Box>
         <VStack spacing={30} mb={20}>
-          <Heading>Launch Tracker</Heading>
+          <Heading fontSize="4xl">Space Launch Tracker</Heading>
           <HStack>
             <Text ><b>Launch Data</b></Text>
             <FormControl>

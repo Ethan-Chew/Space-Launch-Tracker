@@ -27,8 +27,8 @@ import {
   id: "Profile",
   href: "https://profile.ethanchew.com"
   }, {
-  id: "Blog",
-  href: "https://blog.ethanchew.com"
+  id: "Launch Tracker",
+  href: "https://launch.ethanchew.com"
   }, {
   id: "Web Apps",
   href: "https://web-apps.ethanchew.com"
@@ -64,7 +64,7 @@ import {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            {colorMode === 'light' ? <Image src="/Name Logo.png" alt="Ethan Chew" width={200} borderRadius="md" /> : <Image src="/Name Logo L.png" alt="Ethan Chew" width={200} borderRadius="md" />}
+            {colorMode === 'light' ? <Image src="/Name Logo.png" alt="Ethan Chew" width={200} borderRadius="md" href="https://www.ethanchew.com" /> : <Image src="/Name Logo L.png" alt="Ethan Chew" width={200} borderRadius="md" href="https://www.ethanchew.com" />}
             <HStack
               as={'nav'}
               spacing={6}

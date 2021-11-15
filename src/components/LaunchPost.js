@@ -65,7 +65,7 @@ const LaunchPost = ({postData, allData}) => {
         <LinkBox as="article" maxW="md" minW="xs" border={colorMode === "light" ? "1px #EDF2F7 solid" : "1px grey solid"} boxShadow={colorMode === "light" ? "lg" : ""} borderRadius="lg" overflow="hidden">
             {/* <Link href={`/launch/${slugID}`}> */}
                 <Box>
-                    <Image src={postData.image} height="180px" width="100%" objectFit="cover" mb={3}/>
+                    {(postData.image === null) ? <Image src="/PhotoNotAvail.jpeg" height="180px" width="100%" objectFit="cover" mb={3} /> : <Image src={postData.image} height="180px" width="100%" objectFit="cover" mb={3} />}
                     <VStack alignItems="center" mb={3}>
                         <Text fontSize="2xl" textAlign="center"><b>{postData.name}</b></Text>
                         {postData.probability === 80 ? <Text><b>Launch Status:</b> Launch Successful</Text> : <Text><b>Launch Status:</b> {postData.status.name}</Text>}
