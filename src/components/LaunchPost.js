@@ -47,7 +47,14 @@ const LaunchPost = ({postData, allData}) => {
         categories: ['Space Launch'],
     }
 
-    newNewDate = `${newNewDate[0]}, ${newNewDate[2]} ${newNewDate[1]} ${newNewDate[3]} -- ${newNewDate[4]}`
+    newNewDate = `${newNewDate[0]}, ${newNewDate[2]} ${newNewDate[1]} ${newNewDate[3]} -- ${newNewDate[4]} ${newNewDate[5]}`
+
+    // Format Launch Window
+    let windowEnd = new Date(postData.window_end)
+    let windowStart = new Date(postData.window_start)
+    windowEnd = String(windowEnd)
+    windowStart = String(windowStart)
+    const launchWindow = `${windowStart.split(" ")[4]} ${windowStart.split(" ")[5]} - ${windowEnd.split(" ")[4]} ${windowEnd.split(" ")[5]}`
 
     const createICSFile = () => {
         ics.createEvent(event, (err, val) => {
@@ -60,15 +67,17 @@ const LaunchPost = ({postData, allData}) => {
             saveAs(file)
         })
     }
-    
+
     return (
         <LinkBox as="article" maxW="md" minW="xs" border={colorMode === "light" ? "1px #EDF2F7 solid" : "1px grey solid"} boxShadow={colorMode === "light" ? "lg" : ""} borderRadius="lg" overflow="hidden">
             {/* <Link href={`/launch/${slugID}`}> */}
                 <Box>
-                    {(postData.image === null) ? <Image src="/PhotoNotAvail.jpeg" height="180px" width="100%" objectFit="cover" mb={3} /> : <Image src={postData.image} height="180px" width="100%" objectFit="cover" mb={3} />}
+                    <Box height="auto" width="100%" objectFit="contain">
+                        {(postData.image === null) ? <Image src="/PhotoNotAvail.jpeg" height="180px" width="100%" objectFit="cover" mb={3} /> : <Image src={postData.image} height="180px" width="100%" objectFit="cover" mb={3} />}
+                    </Box>
                     <VStack alignItems="center" mb={3}>
                         <Text fontSize="2xl" textAlign="center"><b>{postData.name}</b></Text>
-                        {postData.probability === 80 ? <Text><b>Launch Status:</b> Launch Successful</Text> : <Text><b>Launch Status:</b> {postData.status.name}</Text>}
+                        <Text><b>Launch Status:</b> {postData.status.name}</Text>
                         <Text><b>T-0: </b> {newNewDate}</Text>
                         {postData.mission === null ? <Text><b>Mission: </b> Unknown</Text> : <Text><b>Mission:</b> {postData.mission.type}</Text>}
                     </VStack>
@@ -83,14 +92,15 @@ const LaunchPost = ({postData, allData}) => {
                             </AccordionButton>
                             </h2>
                             <AccordionPanel pb={4}>
-                                <Text><b>Launch Pad: </b> {postData.pad.name}</Text>
-                                <Text mb={2}><b>Provider: </b> {postData.launch_service_provider.name}</Text>
+                                {(postData.pad === null) ? <Text><b>Launch Pad: </b> Unknown</Text> : <Text><b>Launch Pad: </b> {postData.pad.name}</Text>}
+                                {(postData.launch_service_provider === null) ? <Text mb={2}><b>Provider: </b> Unknown</Text> : <Text mb={2}><b>Provider: </b> {postData.launch_service_provider.name}</Text>}
                                 <VStack alignItems="left" spacing={2}>
                                     {(postData.mission === null || postData.mission.orbit === null) ? <Text><b>Orbit: </b> Unknown</Text> : <Text><b>Orbit: </b> {postData.mission.orbit.name}</Text>}
+                                    <Text><b>Launch Window: </b> {launchWindow}</Text>
                                     {(postData.mission === null) ? <Text><b>Description: </b> {postData.status.description}</Text> : <Text><b>Description: </b> {postData.mission.description}</Text>}
                                     {(postData.webcast_live === false) ? (postData.probability === 80 ? <Text mb={2}><b>Livestream/Webcast: </b> Ended</Text> : <Text mb={2}><b>Livestream/Webcast: </b> Offline</Text>) : <Text mb={2}><b>Livestream/Webcast: </b> Online</Text>}
-                                    {(postData.failreason === "") ? <></> : <Text mb={2}><b>Failed: </b> {postData.failreason}</Text>}
-                                    {(postData.holdreason === "") ? <></> : <Text mb={2}><b>On Hold: </b> {postData.holdreason}</Text>}
+                                    {(postData.failreason === "" || postData.failreason === " ") ? <></> : <Text mb={2}><b>Failed: </b> {postData.failreason}</Text>}
+                                    {(postData.holdreason === "" || postData.holdreason === " ") ? <></> : <Text mb={2}><b>On Hold: </b> {postData.holdreason}</Text>}
                                 </VStack>
                             </AccordionPanel>
                         </AccordionItem>
