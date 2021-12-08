@@ -10,7 +10,7 @@ export const getData = (dataToGet) => {
 }
 
 async function getLaunchUpcoming() {
-  let API_ENDPOINT = "http://spacelaunchnow.me/api/ll/2.2.0/launch/upcoming?limit=35"
+  let API_ENDPOINT = "https://spacelaunchnow.me/api/ll/2.2.0/launch/upcoming?limit=35"
 
   if (debug) {
     API_ENDPOINT = "https://lldev.thespacedevs.com/2.2.0/launch/upcoming?limit=35"
@@ -29,7 +29,7 @@ async function getLaunchUpcoming() {
 }
 
 async function getAllLaunch() {
-  let API_ENDPOINT = "http://spacelaunchnow.me/api/ll/2.2.0/launch?limit=135"
+  let API_ENDPOINT = "https://spacelaunchnow.me/api/ll/2.2.0/launch?limit=135"
 
   if (debug) {
     API_ENDPOINT = "https://lldev.thespacedevs.com/2.2.0/launch?limit=135"
